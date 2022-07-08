@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 const { MONGOURI } = require("./config/keys");
 
+// <<<<<<<<<<<<     connect Mongodb with url   >>>>>>>>>>>>>>>
+
 mongoose.connect(MONGOURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -17,6 +19,10 @@ mongoose.connection.on("error", (err) => {
 
 require("./models/user");
 require("./models/post");
+
+
+// <<<<<<<<<<<<    Get All Routes    >>>>>>>>>>>>>>>
+
 
 app.use(express.json());
 app.use(require("./routes/auth"));
