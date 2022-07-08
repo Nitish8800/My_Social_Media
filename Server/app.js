@@ -17,13 +17,11 @@ mongoose.connection.on("error", (err) => {
   console.log("err connecting", err);
 });
 
+// <<<<<<<<<<<<    Get Model    >>>>>>>>>>>>>>>
 require("./models/user");
 require("./models/post");
 
-
 // <<<<<<<<<<<<    Get All Routes    >>>>>>>>>>>>>>>
-
-
 app.use(express.json());
 app.use(require("./routes/auth"));
 // app.use(require("./routes/post"));
