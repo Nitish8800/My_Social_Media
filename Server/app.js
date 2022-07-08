@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.get("/about", customMiddleware, (req, res) => {
+app.get("/about", customMiddleware, (req, res) => {  // for single route use middleware in between bracket
   console.log("About");
   res.send("About page");
 });
