@@ -4,14 +4,21 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 // const { MONGOURI } = require("./config/keys");
 
- 
-const customMiddleware = ()=>{
-  console.log("Middleware Executed")
-}
+const customMiddleware = (req, res, next) => {
+  console.log("Middleware Executed");
+  next();
+};
 
+// app.use(customMiddleware);
 
 app.get("/", (req, res) => {
+  console.log("Home");
   res.send("Hello World");
+});
+
+app.get("/about", customMiddleware, (req, res) => {
+  console.log("About");
+  res.send("About page");
 });
 
 // mongoose.connect(MONGOURI, {
