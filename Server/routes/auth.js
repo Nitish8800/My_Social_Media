@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
-// const jwt = require('jsonwebtoken')
-// const {JWT_SECRET} = require('../config/keys')
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = require("../config/keys");
 // const requireLogin = require('../middleware/requireLogin')
 // const nodemailer = require('nodemailer')
 // const sendgridTransport = require('nodemailer-sendgrid-transport')
@@ -60,33 +60,35 @@ router.post("/signup", (req, res) => {
     });
 });
 
-// router.post('/signin',(req,res)=>{
-//     const {email,password} = req.body
-//     if(!email || !password){
-//        return res.status(422).json({error:"please add email or password"})
-//     }
-//     User.findOne({email:email})
-//     .then(savedUser=>{
-//         if(!savedUser){
-//            return res.status(422).json({error:"Invalid Email or password"})
-//         }
-//         bcrypt.compare(password,savedUser.password)
-//         .then(doMatch=>{
-//             if(doMatch){
-//                 // res.json({message:"successfully signed in"})
-//                const token = jwt.sign({_id:savedUser._id},JWT_SECRET)
-//                const {_id,name,email,followers,following,pic} = savedUser
-//                res.json({token,user:{_id,name,email,followers,following,pic}})
-//             }
-//             else{
-//                 return res.status(422).json({error:"Invalid Email or password"})
-//             }
-//         })
-//         .catch(err=>{
-//             console.log(err)
-//         })
-//     })
-// })
+router.post("/signin", (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(422).json({ error: "please add email or password" });
+  }
+  User.findOne({ email: email }).then((savedUser) => {
+    if (!savedUser) {
+      return res.status(422).json({ error: "Invalid Email or password" });
+    }
+    bcrypt
+      .compare(password, savedUser.password)
+      .then((doMatch) => {
+        if (doMatch) {
+          // res.json({message:"successfully signed in"})
+          const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET);
+          const { _id, name, email, followers, following, pic } = savedUser;
+          res.json({
+            token,
+            user: { _id, name, email, followers, following, pic },
+          });
+        } else {
+          return res.status(422).json({ error: "Invalid Email or password" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+});
 
 // router.post('/reset-password',(req,res)=>{
 //      crypto.randomBytes(32,(err,buffer)=>{
