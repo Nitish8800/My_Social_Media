@@ -12,10 +12,6 @@ const bcrypt = require("bcryptjs");
 // const {SENDGRID_API,EMAIL} = require('../config/keys')
 // //
 
-router.get("/", (req, res) => {
-  res.send("Hello");
-});
-
 // const transporter = nodemailer.createTransport(sendgridTransport({
 //     auth:{
 //         api_key:SENDGRID_API
@@ -52,7 +48,7 @@ router.post("/signup", (req, res) => {
             //     subject:"signup success",
             //     html:"<h1>welcome to instagram</h1>"
             // })
-            res.json({ message: "saved successfully" });
+            res.json({ message: "saved successfully", user });
           })
           .catch((err) => {
             console.log(err);
