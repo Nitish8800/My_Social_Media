@@ -9,18 +9,6 @@ const customMiddleware = (req, res, next) => {
   next();
 };
 
-// app.use(customMiddleware);
-
-app.get("/", (req, res) => {
-  console.log("Home");
-  res.send("Hello World");
-});
-
-app.get("/about", customMiddleware, (req, res) => {  // for single route use middleware in between bracket
-  console.log("About");
-  res.send("About page");
-});
-
 // mongoose.connect(MONGOURI, {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
@@ -51,3 +39,20 @@ app.get("/about", customMiddleware, (req, res) => {  // for single route use mid
 app.listen(PORT, () => {
   console.log("server is running on", PORT);
 });
+
+/* // <<<<<<< Middleware >>>>>>>>
+
+// app.use(customMiddleware);  // for multiple route
+
+app.get("/", (req, res) => {
+  console.log("Home");
+  res.send("Hello World");
+});
+
+app.get("/about", customMiddleware, (req, res) => {
+  // for single route use middleware in between bracket. its prebuild middleware
+  console.log("About");
+  res.send("About page");
+});
+
+*/
