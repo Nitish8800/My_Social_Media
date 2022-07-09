@@ -32,11 +32,16 @@ router.get("/getsubpost", requireLogin, (req, res) => {
 });
 
 router.post("/createpost", requireLogin, (req, res) => {
+  // console.log(req);
   const { title, body, pic } = req.body;
   if (!title || !body || !pic) {
     return res.status(422).json({ error: "Plase add all the fields" });
   }
-  req.user.password = undefined;
+  //   console.log(req.user);
+  //   res.send("ok");
+
+  //   console.log(req.user.password);
+  //   req.user.password = undefined; // for hide the password
   const post = new Post({
     title,
     body,
