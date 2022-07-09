@@ -41,7 +41,7 @@ router.post("/createpost", requireLogin, (req, res) => {
   //   res.send("ok");
 
   //   console.log(req.user.password);
-  //   req.user.password = undefined; // for hide the password
+  req.user.password = undefined; // for hide the password in postman body
   const post = new Post({
     title,
     body,
