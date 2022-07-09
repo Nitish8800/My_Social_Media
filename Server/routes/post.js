@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
 const Post = mongoose.model("Post");
 
+// <<<<<<<<<<  Get All Post  >>>>>>>>>>
+
 router.get("/allpost", requireLogin, (req, res) => {
   Post.find()
     .populate("postedBy", "_id name")
@@ -16,6 +18,8 @@ router.get("/allpost", requireLogin, (req, res) => {
       console.log(err);
     });
 });
+
+// <<<<<<<<<<  Get Sub Post  >>>>>>>>>>
 
 router.get("/getsubpost", requireLogin, (req, res) => {
   // if postedBy in following
@@ -30,6 +34,8 @@ router.get("/getsubpost", requireLogin, (req, res) => {
       console.log(err);
     });
 });
+
+// <<<<<<<<<<   Create new Post  >>>>>>>>>>
 
 router.post("/createpost", requireLogin, (req, res) => {
   // console.log(req);
@@ -58,6 +64,8 @@ router.post("/createpost", requireLogin, (req, res) => {
     });
 });
 
+// <<<<<<<<<<  Get My Post  >>>>>>>>>>
+
 router.get("/mypost", requireLogin, (req, res) => {
   Post.find({ postedBy: req.user._id })
     .populate("PostedBy", "_id name")
@@ -68,6 +76,8 @@ router.get("/mypost", requireLogin, (req, res) => {
       console.log(err);
     });
 });
+
+// <<<<<<<<<<  update Like  >>>>>>>>>>
 
 router.put("/like", requireLogin, (req, res) => {
   Post.findByIdAndUpdate(
@@ -86,6 +96,9 @@ router.put("/like", requireLogin, (req, res) => {
     }
   });
 });
+
+// <<<<<<<<<<  update unlike  >>>>>>>>>>
+
 router.put("/unlike", requireLogin, (req, res) => {
   Post.findByIdAndUpdate(
     req.body.postId,
@@ -103,6 +116,8 @@ router.put("/unlike", requireLogin, (req, res) => {
     }
   });
 });
+
+// <<<<<<<<<<  Do Comment in  post  >>>>>>>>>>
 
 router.put("/comment", requireLogin, (req, res) => {
   const comment = {
@@ -129,6 +144,7 @@ router.put("/comment", requireLogin, (req, res) => {
     });
 });
 
+// <<<<<<<<<<  Delete Post  >>>>>>>>>>
 router.delete("/deletepost/:postId", requireLogin, (req, res) => {
   Post.findOne({ _id: req.params.postId })
     .populate("postedBy", "_id")

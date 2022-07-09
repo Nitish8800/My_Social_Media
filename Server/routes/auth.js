@@ -22,6 +22,9 @@ const requireLogin = require("../middleware/requireLogin");
 //   res.send("Hello User");
 // });
 
+
+// <<<<<<<<<<  Register User >>>>>>>>>>
+
 router.post("/signup", (req, res) => {
   //   console.log(req.body);
   const { name, email, password, pic } = req.body;
@@ -64,6 +67,8 @@ router.post("/signup", (req, res) => {
     });
 });
 
+// <<<<<<<<<<  Login user  >>>>>>>>>>
+
 router.post("/signin", (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -94,6 +99,9 @@ router.post("/signin", (req, res) => {
   });
 });
 
+
+// <<<<<<<<<<  Reset Password User  >>>>>>>>>>
+
 // router.post('/reset-password',(req,res)=>{
 //      crypto.randomBytes(32,(err,buffer)=>{
 //          if(err){
@@ -123,6 +131,9 @@ router.post("/signin", (req, res) => {
 //          })
 //      })
 // })
+
+
+// <<<<<<<<<< Create New Password user  >>>>>>>>>>
 
 // router.post('/new-password',(req,res)=>{
 //     const newPassword = req.body.password
