@@ -18,9 +18,9 @@ const requireLogin = require("../middleware/requireLogin");
 //     }
 // }))
 
-router.get("/protected", requireLogin, (req, res) => {
-  res.send("Hello User");
-});
+// router.get("/protected", requireLogin, (req, res) => {
+//   res.send("Hello User");
+// });
 
 router.post("/signup", (req, res) => {
   //   console.log(req.body);
