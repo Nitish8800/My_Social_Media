@@ -6,7 +6,7 @@ const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config/keys");
-// const requireLogin = require('../middleware/requireLogin')
+const requireLogin = require("../middleware/requireLogin");
 // const nodemailer = require('nodemailer')
 // const sendgridTransport = require('nodemailer-sendgrid-transport')
 // const {SENDGRID_API,EMAIL} = require('../config/keys')
@@ -17,6 +17,10 @@ const { JWT_SECRET } = require("../config/keys");
 //         api_key:SENDGRID_API
 //     }
 // }))
+
+router.get("/protected", requireLogin, (req, res) => {
+  res.send("Hello User");
+});
 
 router.post("/signup", (req, res) => {
   //   console.log(req.body);
