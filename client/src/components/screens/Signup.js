@@ -39,6 +39,7 @@ const SignIn = () => {
       M.toast({ html: "invalid email", classes: "#c62828 red darken-3" });
       return;
     }
+    
     fetch("/signup", {
       method: "post",
       headers: {
